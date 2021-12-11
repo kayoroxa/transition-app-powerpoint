@@ -46,7 +46,6 @@ function elementAninhado(id, children = []) {
     while (find < textMatch.length) {
       console.log({ find, textMatch: textMatch.length })
       if (start === 0) {
-        debugger
         start = texts.indexOf(textMatch[0], start)
         end = start
         find++
@@ -75,7 +74,7 @@ function elementAninhado(id, children = []) {
 
     const { start, end } = matchTextSpan(textMatch, texts)
 
-    ;[...spans].slice(start, end + 1).forEach(span => {
+    ;[...spans].slice(start, end + 1).forEach((span, index) => {
       span.style.color = style.color
       span.style.fontSize = numberOrString(style.fontSize)
       span.style.fontWeight = style.fontWeight
@@ -84,7 +83,11 @@ function elementAninhado(id, children = []) {
       span.style.textTransform = style.textTransform
       span.style.textAlign = style.textAlign
       if (style.text) {
-        span.textContent = style.text
+        span.style.opacity = 0
+        setTimeout(() => {
+          span.textContent = style.text[index]
+          span.style.opacity = 1
+        }, 300)
       }
     })
     return _return
