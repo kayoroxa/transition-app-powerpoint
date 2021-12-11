@@ -10,6 +10,7 @@ const elements = [
   //🦃 put your Element here, for exemple:
   //Element('id') ....
 ]
+createElements(elements)
 
 const timeLine = [
   //🦘 put your timeline functions here
