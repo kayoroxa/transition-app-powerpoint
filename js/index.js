@@ -8,8 +8,9 @@ function timeLine(actions) {
   })
   document.addEventListener(
     'keydown',
-    () => {
-      if (index < actions.length) {
+    e => {
+      console.log(e)
+      if (index < actions.length && e.key === 'ArrowRight') {
         actions[index](
           elements.reduce(
             (acc, element) => ({ ...acc, [element.id]: element }),
