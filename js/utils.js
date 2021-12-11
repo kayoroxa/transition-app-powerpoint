@@ -105,22 +105,28 @@ function Flex() {
   }
 
   function addChild({ w = null, h = null }, slideElement) {
-    if (childrenHorizontal.find(child => child.id === slideElement.id)) return
+    const find = childrenHorizontal.find(child => child.id === slideElement.id)
     if (w) {
-      childrenHorizontal.push({
-        id: slideElement.id,
-        wPercent: w,
-        slideElement,
-        html: slideElement.html,
-      })
+      if (find) find.wPercent = w
+      else {
+        childrenHorizontal.push({
+          id: slideElement.id,
+          wPercent: w,
+          slideElement,
+          html: slideElement.html,
+        })
+      }
     }
     if (h) {
-      childrenVertical.push({
-        id: slideElement.id,
-        hPercent: h,
-        slideElement,
-        html: slideElement.html,
-      })
+      if (find) find.hPercent = h
+      else {
+        childrenVertical.push({
+          id: slideElement.id,
+          hPercent: h,
+          slideElement,
+          html: slideElement.html,
+        })
+      }
     }
 
     updateChildren()
