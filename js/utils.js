@@ -117,7 +117,7 @@ function Flex() {
     if (h) {
       childrenVertical.push({
         id: slideElement.id,
-        hPercent: w,
+        hPercent: h,
         slideElement,
         html: slideElement.html,
       })
