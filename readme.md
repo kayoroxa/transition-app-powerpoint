@@ -72,6 +72,39 @@ Element('id') //replace for your id
     })
 ```
 
+- ### Text MultiStyle
+```javascript
+Element('id') //replace for your id
+    .caixa({ 
+      width: '0px',
+      height: '0px',
+      top: '-500px',
+      left: '50px',
+      // style atributes 
+    })
+    .addText('text') //replace for your text
+    .multiStyle('you_match_text', {
+      //style atributes who will work only in text match
+    })
+```
+
+- ### Change text content
+```javascript
+Element('id') //replace for your id
+    .caixa({ 
+      width: '0px',
+      height: '0px',
+      top: '-500px',
+      left: '50px',
+      // style atributes 
+    })
+    .addText('text') //replace for your text
+    .multiStyle('you_match_text', {
+      //style atributes who will work only in text match
+      text: 'newTest'
+    })
+```
+
 # 🦘 Timeline function
 ```javascript
 ({ id, id2 }) => { // your id elements who you wanna animate
