@@ -1,7 +1,7 @@
 /// fazer o pai invisivel pra conseguir manter a ideia do alinhamento
 //criar ideia do obj com filhos
 
-function elementAninhado(id, children = []) {
+function Element(id, children = []) {
   // const children = children
   const me = document.createElement('div')
   console.log(id)

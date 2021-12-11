@@ -1,5 +1,5 @@
 const elements = [
-  elementAninhado('teach')
+  Element('teach')
     .pStyle({
       width: '0px',
       height: '0px',
@@ -13,7 +13,7 @@ const elements = [
     .cStyle({
       // color: 'red',
     }),
-  elementAninhado('olasinho')
+  Element('olasinho')
     .caixa({ width: 300 })
     .addText('cadeira')
     .cStyle({ color: 'red', fontSize: 50 }),
@@ -72,7 +72,7 @@ timeLine([
   // },
   ({ teach, olasinho }) => {
     teach.caixa({
-      ...relativeHorizontal('3-5/7'),
+      ...relativeHorizontal('1-3/4'),
       ...relativeVertical('1-2/4'),
     })
     olasinho
