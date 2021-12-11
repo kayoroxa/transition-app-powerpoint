@@ -12,9 +12,9 @@ const elements = [
 ]
 createElements(elements)
 
-const timeLine = [
+timeLine([
   //🦘 put your timeline functions here
-]
+])
 ```
 
 # 🦃 Element
