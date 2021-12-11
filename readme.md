@@ -13,7 +13,8 @@ const elements = [
 createElements(elements)
 
 timeLine([
-  //🦘 put your timeline functions here
+  //🦘 put your timeline functions here, for exemple
+  //({ id, id2 }) => {.....}
 ])
 ```
 
