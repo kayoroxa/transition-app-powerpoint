@@ -1,25 +1,29 @@
 function relativeHorizontal(stringSize) {
-  const [place, until, divididoAnt] = stringSize.split(/[\-|\/]/)
+  const [place, until, divididoAnt] = stringSize.split(/[\-|\/]/).map(Number)
+
   const size = until - place
-  const dividido = Number(divididoAnt) + 1
+  const dividido = Number(divididoAnt)
   const pageWidth = window.innerWidth
   const oneWidth = pageWidth / dividido
-  const sizeWidth = oneWidth * size
-  const left = oneWidth * place
+  const sizeWidth = oneWidth * (size + 1)
+  const left = oneWidth * (place - 1)
+  console.log({ dividido, pageWidth, oneWidth, size, place })
   return {
     width: sizeWidth,
     left: left,
+    right: 'auto',
   }
 }
 
 function relativeVertical(stringSize) {
-  const [place, until, divididoAnt] = stringSize.split(/[\-|\/]/)
+  const [place, until, divididoAnt] = stringSize.split(/[\-|\/]/).map(Number)
   const size = until - place
-  const dividido = Number(divididoAnt) + 1
+  const dividido = Number(divididoAnt)
   const pageHeight = window.innerHeight
   const oneHeight = pageHeight / dividido
-  const sizeHeight = oneHeight * size
-  const top = oneHeight * place
+
+  const sizeHeight = oneHeight * (size + 1)
+  const top = oneHeight * (place - 1)
   return {
     height: sizeHeight,
     top: top,
@@ -40,6 +44,7 @@ function Flex() {
     const totalWidth = childrenHorizontal.reduce((acc, child) => {
       return acc + child.width
     }, 0)
+
     // calc left e put left
     childrenHorizontal.forEach((child, index) => {
       const lastWidth = childrenHorizontal[index - 1]
@@ -48,7 +53,6 @@ function Flex() {
 
       const cinco = (pageWidth - totalWidth) / 2
       child.left = cinco + lastWidth
-
       child.slideElement.html.style.width = child.width + 'px'
       child.slideElement.html.style.left = child.left + 'px'
     })
@@ -70,7 +74,7 @@ function Flex() {
         : 0
 
       const cinco = (pageHeight - totalHeight) / 2
-      child.top = cinco + lastHeight
+      child.top = cinco //+ lastHeight
 
       child.slideElement.html.style.height = child.height + 'px'
       child.slideElement.html.style.top = child.top + 'px'
