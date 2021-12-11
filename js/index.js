@@ -1,5 +1,11 @@
 function timeLine(actions) {
   let index = 0
+
+  window.addEventListener('resize', () => {
+    actions[index < actions.length ? index : index - 1](
+      elements.reduce((acc, element) => ({ ...acc, [element.id]: element }), {})
+    )
+  })
   document.addEventListener(
     'keydown',
     () => {
