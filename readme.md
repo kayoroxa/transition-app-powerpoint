@@ -95,7 +95,7 @@ Element('id') //replace for your id
 
 # 👽 News
 ```javascript
-// you can use in style atributes of CAIXA
+// you can use that in style atributes of CAIXA
 
 ...relativeHorizontal('1-3/4')
 
