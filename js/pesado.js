@@ -19,6 +19,11 @@ function Element(id, children = []) {
     updateChildren()
   }
 
+  function resetChildren() {
+    children = []
+    updateChildren()
+  }
+
   function addText(text) {
     //create element html
     const element = document.createElement('p')
@@ -165,7 +170,9 @@ function Element(id, children = []) {
     cStyle,
     filho: cStyle,
     id,
+    resetChildren,
     multiStyle,
+    flex: ({ w, h }) => flex.addChild({ w, h }, _return),
   }
   return _return
 }

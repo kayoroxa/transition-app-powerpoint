@@ -71,15 +71,21 @@ timeLine([
   //     })
   // },
   ({ teach, olasinho }) => {
-    teach.caixa({
-      ...relativeHorizontal('1-3/4'),
-      ...relativeVertical('1-2/4'),
-    })
-    olasinho
+    teach
       .caixa({
-        ...relativeHorizontal('3-5/7'),
-        ...relativeVertical('2-3/4'),
+        // ...relativeHorizontal('1-3/4'),
+        // ...relativeVertical('1-2/4'),
+        // ...flex({ w: 4, h: 4 }, teach),
       })
+      .flex({ w: 4, h: 4 })
+    olasinho
+      .flex({ w: 4, h: 4 })
+      .caixa({
+        // ...flex({ w: 2, h: 2 }, olasinho),
+        // ...relativeHorizontal('3-5/7'),
+        // ...relativeVertical('2-3/4'),
+      })
+      .flex({ w: 4, h: 4 })
       .multiStyle('ira', {
         // color: 'purple',
         // fontSize: 30,
@@ -88,31 +94,3 @@ timeLine([
       })
   },
 ])
-
-function relativeHorizontal(stringSize) {
-  const [place, until, divididoAnt] = stringSize.split(/[\-|\/]/)
-  const size = until - place
-  const dividido = Number(divididoAnt) + 1
-  const pageWidth = window.innerWidth
-  const oneWidth = pageWidth / dividido
-  const sizeWidth = oneWidth * size
-  const left = oneWidth * place
-  return {
-    width: sizeWidth,
-    left: left,
-  }
-}
-
-function relativeVertical(stringSize) {
-  const [place, until, divididoAnt] = stringSize.split(/[\-|\/]/)
-  const size = until - place
-  const dividido = Number(divididoAnt) + 1
-  const pageHeight = window.innerHeight
-  const oneHeight = pageHeight / dividido
-  const sizeHeight = oneHeight * size
-  const top = oneHeight * place
-  return {
-    height: sizeHeight,
-    top: top,
-  }
-}
