@@ -4,7 +4,6 @@
 function Element(id, children = []) {
   // const children = children
   const me = document.createElement('div')
-  console.log(id)
   me.id = id
   me.classList.add('elementAninhado')
 
@@ -33,7 +32,6 @@ function Element(id, children = []) {
       return l
     })
 
-    console.log(letras)
     element.append(...letras)
 
     element.style.top = '0'
@@ -49,7 +47,6 @@ function Element(id, children = []) {
     let find = 0
 
     while (find < textMatch.length) {
-      console.log({ find, textMatch: textMatch.length })
       if (start === 0) {
         start = texts.indexOf(textMatch[0], start)
         end = start
@@ -172,7 +169,10 @@ function Element(id, children = []) {
     id,
     resetChildren,
     multiStyle,
-    flex: ({ w, h }) => flex.addChild({ w, h }, _return),
+    flex: ({ w, h }) => {
+      flex.addChild({ w, h }, _return)
+      return _return
+    },
   }
   return _return
 }

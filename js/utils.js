@@ -31,7 +31,6 @@ function Flex() {
   const childrenHorizontal = []
 
   function updateHorizontal() {
-    console.log('updateHorizontal')
     const pageWidth = window.innerWidth
     /// add with in child not html
     childrenHorizontal.forEach(child => {
@@ -52,29 +51,15 @@ function Flex() {
 
       child.slideElement.html.style.width = child.width + 'px'
       child.slideElement.html.style.left = child.left + 'px'
-      console.log(child.slideElement.html.style.left)
-      console.log({
-        index: index,
-        width: child.width,
-        left: child.left,
-        elementWidth: child.slideElement.html.offsetWidth,
-        elementLeft: child.slideElement.html.offsetLeft,
-        // lastWidth,
-        // cinco,
-        // pageWidth,
-        // totalWidth,
-      })
     })
   }
 
   function updateVertical() {
-    console.log('updateVertical')
     const pageHeight = window.innerHeight
     /// add with in child not html
     childrenVertical.forEach(child => {
       child.height = pageHeight * (child.hPercent / 10)
     })
-    console.log(childrenVertical, pageHeight)
     const totalHeight = childrenVertical.reduce((acc, child) => {
       return acc + child.height
     }, 0)
@@ -86,14 +71,7 @@ function Flex() {
 
       const cinco = (pageHeight - totalHeight) / 2
       child.top = cinco + lastHeight
-      console.log({
-        index: index,
-        height: child.height,
-        top: child.top,
-        // lastHeight,
-        // cinco,
-        // pageHeight,
-      })
+
       child.slideElement.html.style.height = child.height + 'px'
       child.slideElement.html.style.top = child.top + 'px'
     })
