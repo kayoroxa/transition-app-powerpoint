@@ -6,6 +6,9 @@ function Element(id, children = []) {
   const me = document.createElement('div')
   me.id = id
   me.classList.add('elementAninhado')
+  console.log(me.left)
+  // if ((me.left === 'auto' || !me.left) && me.right === 'auto') me.left = '0px'
+  // if ((me.top === 'auto' || !me.top) && me.bottom === 'auto') me.top = '0px'
 
   function updateChildren() {
     me.innerHTML = ''
@@ -123,12 +126,30 @@ function Element(id, children = []) {
   }
 
   function pStyle(style) {
+    me.style.position = 'absolute'
     me.style.width = numberOrString(style.width)
     me.style.height = numberOrString(style.height)
     me.style.top = numberOrString(style.top)
     me.style.left = numberOrString(style.left)
+    me.style.bottom = numberOrString(style.bottom)
     me.style.background = style.background
 
+    // if (style.center === true) {
+    //   const pageWidth = window.innerWidth
+    //   // const pageHeight = window.innerHeight
+    //   const elementWidth = me.offsetWidth
+    //   // const elementHeight = me.offsetHeight
+    //   // const top = pageHeight / 2 - elementHeight / 2
+    //   const left = pageWidth / 2 - elementWidth / 2
+    //   // me.style.top = top + 'px'
+    //   me.style.left = left + 'px'
+    //   return _return
+    // }
+
+    if (!style.bottom && style.top) me.style.bottom = 'auto'
+    if (!style.top && style.bottom) me.style.top = 'auto'
+    if (!style.left && style.right) me.style.left = 'auto'
+    if (!style.right && style.left) me.style.right = 'auto'
     return _return
   }
 
@@ -144,7 +165,7 @@ function Element(id, children = []) {
     children[0].style.color = style.color
     children[0].style.color = style.textColor
     children[0].style.textAlign = style.textAlign
-
+    me.style.justifyContent = style.align
     return _return
   }
 
