@@ -1,9 +1,7 @@
-##  Files:
-- Use the file catalogation.js to write your slide
+## 📁 Files:
+- Use the file `catalogation.js` to write your slide
 
-
-  
-## How to use catalogation.js:
+## ❓ How to use `catalogation.js`:
 
 - There are 2 things (elements & timeLine)
 
