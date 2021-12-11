@@ -7,12 +7,12 @@
 
 ```javascript
 const elements = [
-  //put your Element here, for exemple:
+  //🦃 put your Element here, for exemple:
   //Element('id') ....
 ]
 
 const timeLine = [
-  //put your timeline functions here
+  //🦘 put your timeline functions here
 ]
 ```
 
