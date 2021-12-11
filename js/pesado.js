@@ -73,31 +73,6 @@ function elementAninhado(id, children = []) {
     const spans = children[0].children
     const texts = [...spans].map(span => span.textContent)
 
-    // let start = 0
-    // let end = 0
-    // let find = 0
-
-    // while (find < textMatch.length) {
-    //   console.log({ find, textMatch: textMatch.length })
-    //   if (start === 0) {
-    //     debugger
-    //     start = texts.indexOf(textMatch[0], start)
-    //     end = start
-    //     find++
-    //   }
-    //   if (start === -1) return _return
-
-    //   newEnd = texts.indexOf(textMatch[find], end + 1)
-
-    //   if (end === -1 || newEnd - end !== 1) {
-    //     start = texts.indexOf(textMatch[find], end + 1)
-    //     end = newEnd
-    //   } else {
-    //     find++
-    //     end = newEnd
-    //   }
-    // }
-
     const { start, end } = matchTextSpan(textMatch, texts)
 
     ;[...spans].slice(start, end + 1).forEach(span => {
@@ -165,15 +140,6 @@ function elementAninhado(id, children = []) {
     children[0].style.color = style.textColor
     children[0].style.textAlign = style.textAlign
 
-    // if (style.text) {
-    //   const texts = [...children[0].children].map(span => span.textContent)
-    //   const { start, end } = matchTextSpan(style.text, texts)
-    //   ;[...children[0].children]
-    //     .slice(start, end + 1)
-    //     .forEach((span, index) => {
-    //       span.textContent = style.text[index]
-    //     })
-    // }
     return _return
   }
 
