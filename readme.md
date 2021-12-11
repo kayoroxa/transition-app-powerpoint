@@ -18,7 +18,7 @@ const timeLine = [
 
 # 🦃 Element
 
-- ## Create Element 
+- ### Create Element 
 
 ```javascript
 Element('id') //replace for your id
@@ -30,7 +30,7 @@ Element('id') //replace for your id
       // style atributes 
     })
 ```
-- ## Create Element **image**
+- ### Create Element **image**
 ```javascript
 Element('id') //replace for your id
     .caixa({ 
@@ -43,7 +43,7 @@ Element('id') //replace for your id
     .addImg('url') //replace for your url
 ```
 
-- ## Create Element **text**
+- ### Create Element **text**
 ```javascript
 Element('id') //replace for your id
     .caixa({ 
@@ -56,7 +56,7 @@ Element('id') //replace for your id
     .addText('text') //replace for your text
 ```
 
-- ## Edit style of children ( **Text** / **Image** )
+- ### Edit style of children ( **Text** / **Image** )
 ```javascript
 Element('id') //replace for your id
     .caixa({ 
