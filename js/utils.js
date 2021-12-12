@@ -29,6 +29,34 @@ function relativeVertical(stringSize) {
   }
 }
 
+function jogar(stringPosition) {
+  const pageHeight = window.innerHeight
+  const pageWidth = window.innerWidth
+
+  const position = {
+    width: 0,
+    height: 0,
+  }
+
+  if (stringPosition.includes('top')) {
+    position.left = '50vw'
+    position.top = -500
+  }
+  if (stringPosition.includes('bottom') || stringPosition.includes('buttom')) {
+    position.left = '50vw'
+    position.top = '150vh'
+  }
+  if (stringPosition.includes('left')) {
+    position.top = '50vh'
+    position.left = -500
+  }
+  if (stringPosition.includes('right')) {
+    position.top = pageHeight / 2
+    position.left = '150vw'
+  }
+  return position
+}
+
 function Flex() {
   const children = []
   let dividedByLine = []

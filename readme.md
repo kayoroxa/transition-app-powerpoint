@@ -138,3 +138,11 @@ Element('id') //replace for your id
 
 Element('id').flex({w : 2, h: 2, line 1}) // width: 20%  | heigh: 20% | especifique line 1
 ```
+- you can use this parameters in caixa in initial style:
+
+```javascript
+...jogar('top') // come from top
+...jogar('bottom')  // come from bottom
+...jogar('left') // come from left
+...jogar('right') // come from right
+```
