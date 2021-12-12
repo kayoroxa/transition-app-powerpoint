@@ -22,11 +22,11 @@ body * {
   border: 1px solid black;
 
   overflow: hidden;
-  /* transition: all 0.8s cubic-bezier(0.32, 0.08, 0.54, 0.99), opacity 0.5s; */
+  transition: all 0.8s cubic-bezier(0.32, 0.08, 0.54, 0.99), opacity 0.5s;
 }
 .elementAninhado * {
-  /* overflow: hidden;
-  transition: all 0.8s cubic-bezier(0.32, 0.08, 0.54, 0.99), opacity 0.5s; */
+  /* overflow: hidden; */
+  transition: all 0.8s cubic-bezier(0.32, 0.08, 0.54, 0.99), opacity 0.5s;
   text-align: center;
 }
 .elementAninhado img {

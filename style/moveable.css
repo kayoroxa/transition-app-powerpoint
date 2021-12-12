@@ -8,7 +8,7 @@ body {
 .description {
   padding: 10px;
 }
-#uno {
+.aa {
   position: absolute;
   width: 100px;
   height: 100px;
@@ -17,14 +17,28 @@ body {
   line-height: 100px;
   text-align: center;
   color: #333;
-  background: rgb(59, 174, 219);
+
   font-weight: bold;
   border: 1px solid #333;
   box-sizing: border-box;
   color: white;
 }
 
+#uno {
+  background: rgb(59, 174, 219);
+}
+
+#dois {
+  background: rgb(255, 136, 0);
+  transform: translate(386px, 319px);
+}
 .info {
   position: absolute;
   right: 0;
+}
+
+.info2 {
+  position: absolute;
+  right: 0px;
+  top: 30px;
 }
