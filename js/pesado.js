@@ -190,8 +190,8 @@ function Element(id, children = []) {
     id,
     resetChildren,
     multiStyle,
-    flex: ({ w, h }) => {
-      flex.addChild({ w, h }, _return)
+    flex: ({ w, h, line }) => {
+      flex.addChild({ w, h, line }, _return)
       return _return
     },
   }
