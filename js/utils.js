@@ -7,7 +7,6 @@ function relativeHorizontal(stringSize) {
   const oneWidth = pageWidth / dividido
   const sizeWidth = oneWidth * (size + 1)
   const left = oneWidth * (place - 1)
-  console.log({ dividido, pageWidth, oneWidth, size, place })
   return {
     width: sizeWidth,
     left: left,
@@ -32,95 +31,132 @@ function relativeVertical(stringSize) {
 
 function Flex() {
   const children = []
+  let dividedByLine = []
+  let pageHeight = 10000 //window.innerHeight
+  let pageWidth = 1000 // window.innerWidth
 
-  function updateHorizontal() {
-    const pageWidth = window.innerWidth
-    /// add with in child not html
-    const childrenHorizontal = children.filter(child => child.wPercent)
+  function updateDividedByLine() {
+    dividedByLine = []
+    children.forEach(child => {
+      const { line } = child
+      const index = line ? line - 1 : dividedByLine.length
 
-    childrenHorizontal.forEach(child => {
-      child.width = pageWidth * (child.wPercent / 10)
-    })
-
-    const totalWidth = childrenHorizontal.reduce((acc, child) => {
-      return acc + child.width
-    }, 0)
-
-    console.log({ totalWidth, pageWidth })
-
-    // calc left e put left
-    childrenHorizontal.forEach((child, index) => {
-      const lastWidth = childrenHorizontal[index - 1]
-        ? childrenHorizontal.slice(0, index).reduce((acc, child) => {
-            return acc + child.width
-          }, 0)
-        : 0
-
-      const cinco = (pageWidth - totalWidth) / 2
-      console.log({ cinco })
-      child.left = cinco + lastWidth //todos os ultimos width juntos
-      console.log({ left: cinco + lastWidth, index })
-      child.slideElement.html.style.width = child.width + 'px'
-      child.slideElement.html.style.left = child.left + 'px'
+      dividedByLine[index] = dividedByLine[index]
+        ? [...dividedByLine[index], child]
+        : [child]
     })
   }
+  const deleteEmptyLines = () => (dividedByLine = dividedByLine.filter(Boolean))
 
-  function updateVertical() {
-    const pageHeight = window.innerHeight
-    /// add with in child not html
-    // const height = pageHeight * (this.hPercent / 10)
-    const childrenVertical = children.filter(child => child.hPercent)
-    childrenVertical.forEach(child => {
-      child.height = pageHeight * (child.hPercent / 10)
+  function getLeftAttributeLine(lineWithChildren) {
+    const widthChildrenInLine = lineWithChildren.map(child => child.width)
+
+    const totalWidth = widthChildrenInLine.reduce((acc, curr) => acc + curr, 0)
+
+    const firstLeft = (pageWidth - totalWidth) / 2
+    // get left of each child for center of page
+
+    const leftChildrenInLine = lineWithChildren.map((line, index) => {
+      const left =
+        firstLeft +
+        widthChildrenInLine
+          .slice(0, index)
+          .reduce((total, left) => total + left, 0)
+      return left
     })
-    // const totalHeight = childrenVertical.reduce((acc, child) => {
-    //   return acc + child.height
-    // }, 0)
 
-    childrenVertical.forEach((child, index) => {
-      // const lastHeight = childrenVertical[index - 1]
-      //   ? childrenVertical[index - 1].height
-      //   : 0
+    console.log({ leftChildrenInLine })
+    console.log({ widthChildrenInLine })
+    return leftChildrenInLine
+  }
 
-      // const cinco = (pageHeight - totalHeight) / 2
-      // child.top = cinco //+ lastHeight
-
-      child.top = (pageHeight - child.height) / 2
-
-      child.slideElement.html.style.height = child.height + 'px'
-      child.slideElement.html.style.top = child.top + 'px'
+  function getTopAttributeLine() {
+    //get max height of each line
+    const heightChildrenByLine = dividedByLine.map(line => {
+      const maxHeight = Math.max(...line.map(child => child.height))
+      return maxHeight
     })
+
+    // get top of each line in center of page
+    console.log({ heightChildrenByLine })
+    // somar all height of lines
+    const totalHeight = heightChildrenByLine.reduce(
+      (total, height) => total + height,
+      0
+    )
+    const firstLeft = (pageHeight - totalHeight) / 2
+    const topChildrenByLine = dividedByLine.map((line, index) => {
+      const top =
+        firstLeft +
+        heightChildrenByLine
+          .slice(0, index)
+          .reduce((total, height) => total + height, 0)
+      return top
+    })
+
+    console.log({ topChildrenByLine })
+    return {
+      // maxHeights: heightChildrenByLine,
+      data: topChildrenByLine,
+    }
+  }
+
+  const fixPercentage = number => number / 10
+
+  function addChild({ w = null, h = null, line }, slideElement) {
+    children.push({
+      id: slideElement.id,
+      wPercentage: fixPercentage(w),
+      hPercentage: fixPercentage(h),
+      height: fixPercentage(h) * pageHeight,
+      width: fixPercentage(w) * pageWidth,
+      line,
+      slideElement,
+    })
+    updateDividedByLine()
+    // console.log({ children })
+    // console.log('-------------')
+    // console.log(dividedByLine)
   }
 
   function updateChildren() {
-    updateHorizontal()
-    updateVertical()
-  }
-
-  function addChild({ w = null, h = null, line = 1 }, slideElement) {
-    const findChild = children.find(child => child.id === slideElement.id)
-    if (findChild) {
-      if (w) findChild.wPercent = w
-      if (h) findChild.hPercent = h
-      if (line) findChild.line = line
-    } else {
-      children.push({
-        id: slideElement.id,
-        wPercent: w,
-        hPercent: h,
-        line,
-        slideElement,
+    //put left
+    dividedByLine.forEach(line => {
+      const leftChildrenInLine = getLeftAttributeLine(line)
+      line.forEach((child, index) => {
+        child.left = leftChildrenInLine[index]
       })
-    }
+    })
+    //put top
+    const { data: topChildrenByLine } = getTopAttributeLine()
+    dividedByLine.forEach((line, index) => {
+      line.forEach(child => {
+        child.top = topChildrenByLine[index]
+      })
+    })
+    console.log({ topChildrenByLine })
 
-    updateChildren()
-
-    return _return
+    console.log({
+      dividedByLine: dividedByLine.map(line =>
+        line.map(
+          child => JSON.stringify({ left: child.left, top: child.top }) + '\n'
+        )
+      ),
+    })
   }
-  const _return = {
+
+  return {
     addChild,
+    getTopAttributeLine,
+    updateChildren,
   }
-  return _return
 }
 
-const flex = Flex()
+const me = Flex()
+me.addChild({ w: 1, h: 1 }, { souElement: true, id: '1' })
+me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '2' })
+me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '3' })
+me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '4' })
+me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '4' })
+me.addChild({ w: 1, h: 1 }, { souElement: true, id: '5' })
+me.updateChildren()
