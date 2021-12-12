@@ -12,7 +12,7 @@ const elements = [
 ]
 createElements(elements)
 
-timeLine([
+timeLine(({id, id2}) => [
   //🦘 put your timeline functions here, for exemple
   //({ id, id2 }) => {.....}
 ])
@@ -109,8 +109,7 @@ Element('id') //replace for your id
 
 # 🦘 Timeline function
 ```javascript
-({ id, id2 }) => { // your id elements who you wanna animate
-
+() => {
   id.caixa({
       //style atributes
     }).filho({
@@ -122,7 +121,6 @@ Element('id') //replace for your id
     }).filho({
       //style atributes
     })
-
 }
 ```
 

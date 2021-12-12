@@ -1,4 +1,9 @@
 function timeLine(actions) {
+  if (typeof actions === 'function') {
+    actions = actions(
+      elements.reduce((acc, element) => ({ ...acc, [element.id]: element }), {})
+    )
+  }
   let index = 0
 
   window.addEventListener('resize', () => {
