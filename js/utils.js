@@ -31,12 +31,13 @@ function relativeVertical(stringSize) {
 }
 
 function Flex() {
-  const childrenVertical = []
-  const childrenHorizontal = []
+  const children = []
 
   function updateHorizontal() {
     const pageWidth = window.innerWidth
     /// add with in child not html
+    const childrenHorizontal = children.filter(child => child.wPercent)
+
     childrenHorizontal.forEach(child => {
       child.width = pageWidth * (child.wPercent / 10)
     })
@@ -45,14 +46,20 @@ function Flex() {
       return acc + child.width
     }, 0)
 
+    console.log({ totalWidth, pageWidth })
+
     // calc left e put left
     childrenHorizontal.forEach((child, index) => {
       const lastWidth = childrenHorizontal[index - 1]
-        ? childrenHorizontal[index - 1].width
+        ? childrenHorizontal.slice(0, index).reduce((acc, child) => {
+            return acc + child.width
+          }, 0)
         : 0
 
       const cinco = (pageWidth - totalWidth) / 2
-      child.left = cinco + lastWidth
+      console.log({ cinco })
+      child.left = cinco + lastWidth //todos os ultimos width juntos
+      console.log({ left: cinco + lastWidth, index })
       child.slideElement.html.style.width = child.width + 'px'
       child.slideElement.html.style.left = child.left + 'px'
     })
@@ -61,20 +68,24 @@ function Flex() {
   function updateVertical() {
     const pageHeight = window.innerHeight
     /// add with in child not html
+    // const height = pageHeight * (this.hPercent / 10)
+    const childrenVertical = children.filter(child => child.hPercent)
     childrenVertical.forEach(child => {
       child.height = pageHeight * (child.hPercent / 10)
     })
-    const totalHeight = childrenVertical.reduce((acc, child) => {
-      return acc + child.height
-    }, 0)
+    // const totalHeight = childrenVertical.reduce((acc, child) => {
+    //   return acc + child.height
+    // }, 0)
 
     childrenVertical.forEach((child, index) => {
-      const lastHeight = childrenVertical[index - 1]
-        ? childrenVertical[index - 1].height
-        : 0
+      // const lastHeight = childrenVertical[index - 1]
+      //   ? childrenVertical[index - 1].height
+      //   : 0
 
-      const cinco = (pageHeight - totalHeight) / 2
-      child.top = cinco //+ lastHeight
+      // const cinco = (pageHeight - totalHeight) / 2
+      // child.top = cinco //+ lastHeight
+
+      child.top = (pageHeight - child.height) / 2
 
       child.slideElement.html.style.height = child.height + 'px'
       child.slideElement.html.style.top = child.top + 'px'
@@ -86,29 +97,20 @@ function Flex() {
     updateVertical()
   }
 
-  function addChild({ w = null, h = null }, slideElement) {
-    const find = childrenHorizontal.find(child => child.id === slideElement.id)
-    if (w) {
-      if (find) find.wPercent = w
-      else {
-        childrenHorizontal.push({
-          id: slideElement.id,
-          wPercent: w,
-          slideElement,
-          html: slideElement.html,
-        })
-      }
-    }
-    if (h) {
-      if (find) find.hPercent = h
-      else {
-        childrenVertical.push({
-          id: slideElement.id,
-          hPercent: h,
-          slideElement,
-          html: slideElement.html,
-        })
-      }
+  function addChild({ w = null, h = null, line = 1 }, slideElement) {
+    const findChild = children.find(child => child.id === slideElement.id)
+    if (findChild) {
+      if (w) findChild.wPercent = w
+      if (h) findChild.hPercent = h
+      if (line) findChild.line = line
+    } else {
+      children.push({
+        id: slideElement.id,
+        wPercent: w,
+        hPercent: h,
+        line,
+        slideElement,
+      })
     }
 
     updateChildren()
