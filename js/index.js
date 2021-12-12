@@ -46,6 +46,12 @@ function createElements(elements) {
   })
 }
 
+// window.onbeforeunload = function () {
+//   window.scrollTo(0, 0)
+// }
+window.onscroll = function () {
+  window.scrollTo(0, 0)
+}
 // setTimeout(() => {
 //   catalogação[0].action()
 //   catalogação[1].action()
