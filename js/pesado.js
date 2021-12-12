@@ -153,19 +153,27 @@ function Element(id, children = []) {
     return _return
   }
 
-  function cStyle(style) {
+  function cStyle(style, index = 0) {
     if (children.length <= 0)
       return throwError('elementAninhado: Não tem filho')
-    children[0].style.width = numberOrString(style.width)
-    children[0].style.height = numberOrString(style.height)
-    children[0].style.top = numberOrString(style.top)
-    children[0].style.left = numberOrString(style.left)
-    children[0].style.fontSize = numberOrString(style.fontSize)
-    children[0].style.background = style.background
-    children[0].style.color = style.color
-    children[0].style.color = style.textColor
-    children[0].style.textAlign = style.textAlign
-    me.style.justifyContent = style.align
+
+    index = style.child ? Math.max(style.child - 1, 0, index) : index
+    children[index].style.width = numberOrString(style.width)
+    children[index].style.height = numberOrString(style.height)
+    children[index].style.top = numberOrString(style.top)
+    children[index].style.left = numberOrString(style.left)
+    children[index].style.fontSize = numberOrString(style.fontSize)
+    children[index].style.background = style.background
+    children[index].style.color = style.color
+    children[index].style.color = style.textColor
+    children[index].style.textAlign = style.textAlign
+    children[index].style.textDecoration = style.textDecoration
+    children[index].style.textTransform = style.textTransform
+    children[index].style.fontWeight = style.fontWeight
+    children[index].style.fontStyle = style.fontStyle
+    children[index].style.border = style.border
+    children[index].style.alignSelf = 'flex-' + style.align
+    me.style.justifyContent = style.alignH
     return _return
   }
 
