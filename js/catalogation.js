@@ -1,96 +1,70 @@
 const elements = [
-  Element('teach')
-    .pStyle({
+  // Element('header') //replace for your id
+  //   .caixa({
+  //     left: 0,
+  //     right: 0,
+  //     // width: '0px',
+  //     // height: '0px',
+  //     // bottom: '0px',
+  //     // center: true,
+  //   })
+  //   .addText('header')
+  //   .filho({
+  //     align: 'end',
+  //   }),
+  Element('header') //replace for your id
+    .caixa({
+      left: 0,
+      right: 0,
+      // width: '0px',
+      // height: '0px',
+      // bottom: '0px',
+      // center: true,
+    })
+    .addText('asdasd')
+    .filho({
+      // align: 'end',
+    }),
+  Element('image_exemplo')
+    .caixa({
       width: '0px',
       height: '0px',
-      top: '-500px',
-      left: '50px',
-      // background: 'green',
+      top: '2000px',
     })
-    .addImg(
-      'https://images.pexels.com/photos/10367728/pexels-photo-10367728.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-    )
-    .cStyle({
-      // color: 'red',
-    }),
-  Element('olasinho')
-    .caixa({ width: 300 })
-    .addText('cadeira')
-    .cStyle({ color: 'red', fontSize: 50 }),
+    .addImg('https://picsum.photos/700/700'),
 ]
 createElements(elements)
 
 timeLine([
-  // ({ teach, olasinho }) => {
-  //   // teach.pStyle({
-  //   //   width: 300,
-  //   //   height: 600,
-  //   //   top: 100,
-  //   //   left: 30,
-  //   // })
-
-  //   olasinho
-  //     .caixa({
-  //       top: 200,
-  //       left: 450,
-  //     })
-  //     .multiStyle('ira', {
-  //       color: 'black',
-  //       fontSize: 80,
-  //       textDecoration: 'underline',
-  //     })
-  // },
-  // ({ olasinho }) => {
-  //   olasinho
-
-  //     // .caixa({
-  //     //   top: 20,
-  //     //   left: 20,
-  //     // })
-  //     .multiStyle('ira', {
-  //       // color: 'purple',
-  //       // fontSize: 30,
-  //       // textDecoration: 'overline',
-  //       text: 'olá',
-  //     })
-  // },
-  // ({ olasinho }) => {
-  //   olasinho
-
-  //     .caixa({
-  //       width: relativeHorizontal('2-4/8').width,
-  //       left: relativeHorizontal('2-4/8').left,
-  //       top: relativeVertical(1, 1, 3).top,
-  //       height: relativeVertical(1, 1, 3).height,
-  //     })
-  //     .multiStyle('ira', {
-  //       // color: 'purple',
-  //       // fontSize: 30,
-  //       // textDecoration: 'overline',
-  //       text: 'olá',
-  //     })
-  // },
-  ({ teach, olasinho }) => {
-    teach
+  ({ header }) => {
+    // your id elements who you wanna animate
+    header
       .caixa({
-        // ...relativeHorizontal('1-3/4'),
-        // ...relativeVertical('1-2/4'),
-        // ...flex({ w: 4, h: 4 }, teach),
+        ...relativeHorizontal('2-4/5'),
+        ...relativeVertical('2-4/5'),
       })
-      .flex({ w: 4, h: 4 })
-    olasinho
-      .flex({ w: 4, h: 4 })
+      .filho({
+        //style atributes
+      })
+  },
+  ({ image_exemplo, header }) => {
+    // your id elements who you wanna animate
+    console.log('olá')
+    header
       .caixa({
-        // ...flex({ w: 2, h: 2 }, olasinho),
-        // ...relativeHorizontal('3-5/7'),
-        // ...relativeVertical('2-3/4'),
+        ...relativeHorizontal('2-4/5'),
+        ...relativeVertical('2-3/16'),
       })
-      .flex({ w: 4, h: 4 })
-      .multiStyle('ira', {
-        // color: 'purple',
-        // fontSize: 30,
-        // textDecoration: 'overline',
-        text: 'olá',
+      .filho({
+        //style atributes
+      })
+    image_exemplo
+      .caixa({
+        ...relativeHorizontal('2-4/5'),
+        ...relativeVertical('4-9/10'),
+      })
+      .filho({
+        //style atributes
       })
   },
 ])

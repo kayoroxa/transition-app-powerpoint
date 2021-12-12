@@ -10,7 +10,7 @@ function timeLine(actions) {
   document.addEventListener(
     'keydown',
     e => {
-      if (index < actions.length && e.key === 'ArrowRight') {
+      if (index < actions.length && (e.key === 'ArrowRight' || e.key === 'd')) {
         actions[index](
           elements.reduce(
             (acc, element) => ({ ...acc, [element.id]: element }),
@@ -18,6 +18,14 @@ function timeLine(actions) {
           )
         )
         index++
+      } else if (index > 0 && e.key === 'ArrowLeft') {
+        index--
+        actions[index](
+          elements.reduce(
+            (acc, element) => ({ ...acc, [element.id]: element }),
+            {}
+          )
+        )
       }
     }
     // { once: true }

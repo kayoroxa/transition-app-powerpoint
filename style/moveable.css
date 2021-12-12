@@ -1,0 +1,30 @@
+html,
+body {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.description {
+  padding: 10px;
+}
+#uno {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0px;
+  left: 0px;
+  line-height: 100px;
+  text-align: center;
+  color: #333;
+  background: rgb(59, 174, 219);
+  font-weight: bold;
+  border: 1px solid #333;
+  box-sizing: border-box;
+  color: white;
+}
+
+.info {
+  position: absolute;
+  right: 0;
+}
