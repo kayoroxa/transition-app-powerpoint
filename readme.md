@@ -135,4 +135,8 @@ Element('id') //replace for your id
 ...relativeHorizontal('1-3/4')
 
 ...relativeVertical('1-2/4')
+
+//or
+
+Element('id').flex({w : 2, h: 2, line 1}) // width: 20%  | heigh: 20% | especifique line 1
 ```
