@@ -117,12 +117,28 @@ moveable2
       height: e.height,
     }
     document.querySelector('.info2').innerHTML = JSON.stringify(infos2, null, 2)
+    save()
   })
 
-//key down
-// document.addEventListener('keydown', e => {
-//   console.log(e.key)
-//   if (e.key === ' ') {
+//save in local storage
+let save = () => {
+  localStorage.setItem('infos', JSON.stringify(infos))
+  localStorage.setItem('infos2', JSON.stringify(infos2))
+}
+
+// let load = () => {
+//   if (localStorage.getItem('infos')) {
+//     infos = JSON.parse(localStorage.getItem('infos'))
+//     infos2 = JSON.parse(localStorage.getItem('infos2'))
 //     document.querySelector('.info').innerHTML = JSON.stringify(infos, null, 2)
+//     document.querySelector('.info2').innerHTML = JSON.stringify(infos2, null, 2)
+
+//     document.querySelector('#uno').style.transform = infos.transform
+//     document.querySelector('#uno').style.width = `${infos.width}px`
+//     document.querySelector('#uno').style.height = `${infos.height}px`
+
+//     document.querySelector('#dois').style.transform = infos2.transform
+//     document.querySelector('#dois').style.width = `${infos2.width}px`
+//     document.querySelector('#dois').style.height = `${infos2.height}px`
 //   }
-// })
+// }

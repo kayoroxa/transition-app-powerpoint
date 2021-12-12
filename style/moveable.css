@@ -30,7 +30,7 @@ body {
 
 #dois {
   background: rgb(255, 136, 0);
-  transform: translate(386px, 319px);
+  /* transform: translate(386px, 319px); */
 }
 .info {
   position: absolute;
