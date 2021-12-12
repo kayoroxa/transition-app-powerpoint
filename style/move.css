@@ -7,11 +7,16 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
-body * {
+/* body {
+  width: 100vh;
+  height: 100vh;
+  position: relative;
+  background-color: red;
+} */
+
+.elementAninhado {
   top: 0;
   left: 0;
-}
-.elementAninhado {
   position: absolute;
   display: flex;
   width: 100px;
