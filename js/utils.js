@@ -32,8 +32,8 @@ function relativeVertical(stringSize) {
 function Flex() {
   const children = []
   let dividedByLine = []
-  let pageHeight = 10000 //window.innerHeight
-  let pageWidth = 1000 // window.innerWidth
+  let pageHeight = window.innerHeight
+  let pageWidth = window.innerWidth
 
   function updateDividedByLine() {
     dividedByLine = []
@@ -64,9 +64,6 @@ function Flex() {
           .reduce((total, left) => total + left, 0)
       return left
     })
-
-    console.log({ leftChildrenInLine })
-    console.log({ widthChildrenInLine })
     return leftChildrenInLine
   }
 
@@ -78,7 +75,6 @@ function Flex() {
     })
 
     // get top of each line in center of page
-    console.log({ heightChildrenByLine })
     // somar all height of lines
     const totalHeight = heightChildrenByLine.reduce(
       (total, height) => total + height,
@@ -94,29 +90,44 @@ function Flex() {
       return top
     })
 
-    console.log({ topChildrenByLine })
     return {
       // maxHeights: heightChildrenByLine,
       data: topChildrenByLine,
     }
   }
 
-  const fixPercentage = number => number / 10
+  const fixPercentage = number => {
+    const percentage = number / 10
+    return percentage
+  }
 
   function addChild({ w = null, h = null, line }, slideElement) {
-    children.push({
-      id: slideElement.id,
-      wPercentage: fixPercentage(w),
-      hPercentage: fixPercentage(h),
-      height: fixPercentage(h) * pageHeight,
-      width: fixPercentage(w) * pageWidth,
-      line,
-      slideElement,
-    })
+    console.log({ w, h, line, id: slideElement.id })
+    //check if already exist
+    let exist = children.find(child => child.slideElement === slideElement)
+    if (exist) {
+      debugger
+      exist.wPercentage = fixPercentage(w)
+      exist.hPercentage = fixPercentage(h)
+      exist.height = fixPercentage(h) * pageHeight
+      exist.width = fixPercentage(w) * pageWidth
+      exist.line = line
+      console.log('exist', exist)
+    } else {
+      children.push({
+        id: slideElement.id,
+        wPercentage: fixPercentage(w),
+        hPercentage: fixPercentage(h),
+        height: fixPercentage(h) * pageHeight,
+        width: fixPercentage(w) * pageWidth,
+        line,
+        slideElement,
+      })
+      console.log(children.slice(-1))
+    }
     updateDividedByLine()
-    // console.log({ children })
-    // console.log('-------------')
-    // console.log(dividedByLine)
+    deleteEmptyLines()
+    updateChildren()
   }
 
   function updateChildren() {
@@ -125,6 +136,8 @@ function Flex() {
       const leftChildrenInLine = getLeftAttributeLine(line)
       line.forEach((child, index) => {
         child.left = leftChildrenInLine[index]
+        child.slideElement.html.style.left = child.left + 'px'
+        child.slideElement.html.style.width = child.width + 'px'
       })
     })
     //put top
@@ -132,18 +145,20 @@ function Flex() {
     dividedByLine.forEach((line, index) => {
       line.forEach(child => {
         child.top = topChildrenByLine[index]
+        child.slideElement.html.style.top = child.top + 'px'
+        child.slideElement.html.style.height = child.height + 'px'
       })
     })
-    console.log({ topChildrenByLine })
 
-    console.log({
-      dividedByLine: dividedByLine.map(line =>
+    console.log(
+      dividedByLine.map(line =>
         line.map(
           child => JSON.stringify({ left: child.left, top: child.top }) + '\n'
         )
-      ),
-    })
+      )
+    )
   }
+  console.log({ pageHeight, pageWidth })
 
   return {
     addChild,
@@ -152,11 +167,12 @@ function Flex() {
   }
 }
 
-const me = Flex()
-me.addChild({ w: 1, h: 1 }, { souElement: true, id: '1' })
-me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '2' })
-me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '3' })
-me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '4' })
-me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '4' })
-me.addChild({ w: 1, h: 1 }, { souElement: true, id: '5' })
-me.updateChildren()
+const flex = Flex()
+// me.addChild({ w: 1, h: 1 }, { souElement: true, id: '1' })
+// me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '2' })
+// me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '3' })
+// me.addChild({ w: 1, h: 2, line: 2 }, { souElement: true, id: '4' })
+// me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '4' })
+// me.addChild({ w: 1, h: 1 }, { souElement: true, id: '5' })
+// me.addChild({ w: 1, h: 1 }, { souElement: true, id: '5' })
+// me.updateChildren()
