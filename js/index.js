@@ -4,6 +4,11 @@ function timeLine(actions) {
       elements.reduce((acc, element) => ({ ...acc, [element.id]: element }), {})
     )
   }
+  window.localStorage.getItem('show-grid') === 'true' &&
+    [...document.querySelectorAll('.elementAninhado')].map(el => {
+      el.classList.add('show-grid')
+    })
+
   let index = 0
 
   window.addEventListener('resize', () => {
@@ -33,8 +38,15 @@ function timeLine(actions) {
           )
         )
       } else if (e.key === 'g') {
-        ;[...document.querySelectorAll('.elementAninhado')].map(el =>
+        ;[...document.querySelectorAll('.elementAninhado')].map(el => {
           el.classList.toggle('show-grid')
+          //save in local storage the toggle
+        })
+        window.localStorage.setItem(
+          'show-grid',
+          document
+            .querySelector('.elementAninhado')
+            .classList.contains('show-grid')
         )
       }
     }
