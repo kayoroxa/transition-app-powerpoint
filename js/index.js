@@ -32,6 +32,10 @@ function timeLine(actions) {
             {}
           )
         )
+      } else if (e.key === 'g') {
+        ;[...document.querySelectorAll('.elementAninhado')].map(el =>
+          el.classList.toggle('show-grid')
+        )
       }
     }
     // { once: true }
