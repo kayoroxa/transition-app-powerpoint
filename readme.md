@@ -131,7 +131,7 @@ myElementId.flex({w : 2, h: 2, line 1}) // width: 20%  | heigh: 20% | especifiqu
 myElementId.flex()
 
 //remove flex and throw to up
-myElementId.jogar('up').flex()
+myElementId.caixa({...jogar('up')}).flex()
 ```
 
 
