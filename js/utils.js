@@ -38,11 +38,15 @@ function jogar(stringPosition) {
     height: 0,
   }
 
-  if (stringPosition.includes('top')) {
+  if (stringPosition.includes('top') || stringPosition.includes('up')) {
     position.left = '50vw'
     position.top = -500
   }
-  if (stringPosition.includes('bottom') || stringPosition.includes('buttom')) {
+  if (
+    stringPosition.includes('bottom') ||
+    stringPosition.includes('buttom') ||
+    stringPosition.includes('down')
+  ) {
     position.left = '50vw'
     position.top = '150vh'
   }
@@ -74,7 +78,7 @@ function Flex() {
         : [child]
     })
   }
-  const deleteEmptyLines = () => (dividedByLine = dividedByLine.filter(Boolean))
+  const deleteEmptyLines = () => {} //(dividedByLine = dividedByLine.filter(Boolean))
 
   function getLeftAttributeLine(lineWithChildren) {
     const widthChildrenInLine = lineWithChildren.map(child => child.width)
@@ -129,8 +133,20 @@ function Flex() {
     return percentage
   }
 
-  function addChild({ w = null, h = null, line }, slideElement) {
-    console.log({ w, h, line, id: slideElement.id })
+  function addChild(propriedades, slideElement) {
+    if (!propriedades) {
+      console.log('oiiiiiiiiii')
+      //remove child with id
+      const index = children.findIndex(child => child.id === slideElement.id)
+      console.log(index)
+      children.splice(index, 1)
+      console.log(children)
+      updateDividedByLine()
+      updateChildren()
+      return
+    }
+    console.log('propriedades', propriedades)
+    const { w = null, h = null, line } = propriedades
     //check if already exist
     let exist = children.find(child => child.slideElement === slideElement)
     if (exist) {

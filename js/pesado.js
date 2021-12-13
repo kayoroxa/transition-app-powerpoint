@@ -156,24 +156,28 @@ function Element(id, children = []) {
   function cStyle(style, index = 0) {
     if (children.length <= 0)
       return throwError('elementAninhado: Não tem filho')
-
+    // console.log({ style })
     index = style.child ? Math.max(style.child - 1, 0, index) : index
+    // children[index].style = { ...children[index].style, ...style }
+    console.log({ style: children[index].style })
     children[index].style.width = numberOrString(style.width)
     children[index].style.height = numberOrString(style.height)
     children[index].style.top = numberOrString(style.top)
     children[index].style.left = numberOrString(style.left)
     children[index].style.fontSize = numberOrString(style.fontSize)
-    children[index].style.background = style.background
-    children[index].style.color = style.color
     children[index].style.color = style.textColor
+    children[index].style.alignSelf = 'flex-' + style.align
+    me.style.justifyContent = style.alignH
+    children[index].style.color = style.color
+    children[index].style.background = style.background
     children[index].style.textAlign = style.textAlign
     children[index].style.textDecoration = style.textDecoration
     children[index].style.textTransform = style.textTransform
     children[index].style.fontWeight = style.fontWeight
     children[index].style.fontStyle = style.fontStyle
     children[index].style.border = style.border
-    children[index].style.alignSelf = 'flex-' + style.align
-    me.style.justifyContent = style.alignH
+    children[index].style.marginTop = style.marginTop
+    ///all style
     return _return
   }
 
@@ -198,8 +202,8 @@ function Element(id, children = []) {
     id,
     resetChildren,
     multiStyle,
-    flex: ({ w, h, line }) => {
-      flex.addChild({ w, h, line }, _return)
+    flex: propriedades => {
+      flex.addChild(propriedades, _return)
       return _return
     },
   }
