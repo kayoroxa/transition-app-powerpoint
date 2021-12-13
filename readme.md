@@ -151,6 +151,10 @@ myElementId.caixa({...jogar('up')}).flex()
 ...jogar('left') // come from left
 ...jogar('right') // come from right
 ```
+
+
+# 🆘 SOS
+
 ![ezgif-3-d404e8067570](https://user-images.githubusercontent.com/54248474/145738392-54073c1a-301e-4d39-8839-68c2e10e4b0a.gif)
 ```javascript
 timeLine(({ exemple_text, teach, image_1, image_2 }) => [
