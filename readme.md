@@ -125,7 +125,7 @@ Element('id') //replace for your id
 ```
 # ❤ Flex
 ```javascript
-Element('id').flex({w : 2, h: 2, line 1}) // width: 20%  | heigh: 20% | especifique line 1
+myElementId.flex({w : 2, h: 2, line 1}) // width: 20%  | heigh: 20% | especifique line 1
 
 // use flex empty to remove flex
 myElementId.flex()
