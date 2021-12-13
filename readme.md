@@ -151,3 +151,27 @@ myElementId.caixa({...jogar('up')}).flex()
 ...jogar('left') // come from left
 ...jogar('right') // come from right
 ```
+![ezgif-3-d404e8067570](https://user-images.githubusercontent.com/54248474/145738392-54073c1a-301e-4d39-8839-68c2e10e4b0a.gif)
+```javascript
+timeLine(({ exemple_text, teach, image_1, image_2 }) => [
+  () => {
+    teach.flex({ w: 7, h: 3.6 })
+  },
+  () => {
+    teach.flex({ w: 7, h: 3 })
+    image_1.flex({ w: 4, h: 5.5, line: 2 })
+  },
+  () => {
+    teach.flex({ w: 7, h: 3 })
+    image_1.flex({ w: 4, h: 5.5, line: 2 })
+    image_2.flex({ w: 4, h: 5.5, line: 2 })
+  },
+  () => {
+    exemple_text.flex({ w: 4, h: 5.5, line: 2 })
+    image_1
+      .caixa({ opacity: 0.4, height: '50vh', top: '40vh', zIndex: '-6' })
+      .flex()
+  },
+])
+```
+
