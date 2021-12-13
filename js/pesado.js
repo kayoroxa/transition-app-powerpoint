@@ -57,7 +57,7 @@ function Element(id, children = []) {
     let start = -1
     let end = -1
     let find = 0
-
+    if (textMatch === 'como vai') debugger
     while (find < textMatch.length) {
       if (start <= 0) {
         start = texts.indexOf(textMatch[0], Math.max(start, startCaracter, 0))
@@ -67,11 +67,17 @@ function Element(id, children = []) {
       if (find >= textMatch.length) break
       // if (start < 0) return { start: -1, end: -1 }
 
-      newEnd = texts.indexOf(textMatch[find], end + 1)
+      newEnd = texts.indexOf(
+        textMatch[find],
+        Math.max(start, startCaracter, 0, end)
+      )
+      if (newEnd < 0) return { start: -1, end: -1 }
 
       if (end === -1 || newEnd - end !== 1) {
-        start = texts.indexOf(textMatch[find], end + 1)
-        end = newEnd
+        if (textMatch === 'como vai') debugger
+        start = texts.indexOf(textMatch[0], newEnd)
+        end = start
+        find = 1
       } else {
         find++
         end = newEnd
@@ -93,6 +99,7 @@ function Element(id, children = []) {
 
     while (startCaracter < texts.length) {
       const { start, end } = matchTextSpan(textMatch, texts, startCaracter)
+      if (end < 0) break
       ;[...spans].slice(start, end + 1).forEach((span, index) => {
         span.style.color = style.color
         span.style.fontSize = numberOrString(style.fontSize)
@@ -109,7 +116,7 @@ function Element(id, children = []) {
           }, 300)
         }
       })
-      if (end < 0) break
+
       startCaracter = end + 1
     }
     return _return
