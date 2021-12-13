@@ -53,18 +53,19 @@ function Element(id, children = []) {
     return _return
   }
 
-  function matchTextSpan(textMatch, texts) {
-    let start = 0
-    let end = 0
+  function matchTextSpan(textMatch, texts, startCaracter) {
+    let start = -1
+    let end = -1
     let find = 0
 
     while (find < textMatch.length) {
-      if (start === 0) {
-        start = texts.indexOf(textMatch[0], start)
+      if (start <= 0) {
+        start = texts.indexOf(textMatch[0], Math.max(start, startCaracter, 0))
         end = start
         find++
       }
-      if (start === -1) return { start: 0, end: 0 }
+      if (find >= textMatch.length) break
+      // if (start < 0) return { start: -1, end: -1 }
 
       newEnd = texts.indexOf(textMatch[find], end + 1)
 
@@ -86,24 +87,29 @@ function Element(id, children = []) {
     const spans = children[0].children
     const texts = [...spans].map(span => span.textContent)
 
-    const { start, end } = matchTextSpan(textMatch, texts)
+    let startCaracter = 0
 
-    ;[...spans].slice(start, end + 1).forEach((span, index) => {
-      span.style.color = style.color
-      span.style.fontSize = numberOrString(style.fontSize)
-      span.style.fontWeight = style.fontWeight
-      span.style.fontStyle = style.fontStyle
-      span.style.textDecoration = style.textDecoration
-      span.style.textTransform = style.textTransform
-      span.style.textAlign = style.textAlign
-      if (style.text) {
-        span.style.opacity = 0
-        setTimeout(() => {
-          span.textContent = style.text[index]
-          span.style.opacity = 1
-        }, 300)
-      }
-    })
+    while (startCaracter < texts.length) {
+      const { start, end } = matchTextSpan(textMatch, texts, startCaracter)
+      ;[...spans].slice(start, end + 1).forEach((span, index) => {
+        span.style.color = style.color
+        span.style.fontSize = numberOrString(style.fontSize)
+        span.style.fontWeight = style.fontWeight
+        span.style.fontStyle = style.fontStyle
+        span.style.textDecoration = style.textDecoration
+        span.style.textTransform = style.textTransform
+        span.style.textAlign = style.textAlign
+        if (style.text) {
+          span.style.opacity = 0
+          setTimeout(() => {
+            span.textContent = style.text[index]
+            span.style.opacity = 1
+          }, 300)
+        }
+      })
+      if (end < 0) break
+      startCaracter = end + 1
+    }
     return _return
   }
 
