@@ -26,7 +26,16 @@ function Element(id, children = []) {
     updateChildren()
   }
 
+  function handleAddMultiText(texts) {
+    texts.forEach(text => addText(text))
+    // return _return
+  }
+
   function addText(text) {
+    if (Array.isArray(text)) {
+      handleAddMultiText(text)
+      return _return
+    }
     //create element html
     const element = document.createElement('p')
     const letras = text.split('').map(letra => {
@@ -176,8 +185,17 @@ function Element(id, children = []) {
     ///all style
     return _return
   }
+  function handleCStyleFunc(func) {
+    children.forEach((_, index) => {
+      cStyleDo(func(index), index)
+    })
+  }
 
   function cStyle(style, index = 0) {
+    if (typeof style === 'function') {
+      handleCStyleFunc(style)
+      return _return
+    }
     if (children.length <= 0)
       return throwError('elementAninhado: Não tem filho')
 
