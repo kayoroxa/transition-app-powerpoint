@@ -57,7 +57,6 @@ function Element(id, children = []) {
     let start = -1
     let end = -1
     let find = 0
-    if (textMatch === 'como vai') debugger
     while (find < textMatch.length) {
       if (start <= 0) {
         start = texts.indexOf(textMatch[0], Math.max(start, startCaracter, 0))
@@ -74,7 +73,6 @@ function Element(id, children = []) {
       if (newEnd < 0) return { start: -1, end: -1 }
 
       if (end === -1 || newEnd - end !== 1) {
-        if (textMatch === 'como vai') debugger
         start = texts.indexOf(textMatch[0], newEnd)
         end = start
         find = 1
