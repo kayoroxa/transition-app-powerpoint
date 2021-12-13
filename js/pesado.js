@@ -133,6 +133,8 @@ function Element(id, children = []) {
     me.style.left = numberOrString(style.left)
     me.style.bottom = numberOrString(style.bottom)
     me.style.background = style.background
+    me.style.opacity = style.opacity
+    me.style.zIndex = style.zIndex
 
     // if (style.center === true) {
     //   const pageWidth = window.innerWidth
