@@ -148,7 +148,6 @@ function Flex() {
     //check if already exist
     let exist = children.find(child => child.slideElement === slideElement)
     if (exist) {
-      debugger
       exist.wPercentage = fixPercentage(w)
       exist.hPercentage = fixPercentage(h)
       exist.height = fixPercentage(h) * pageHeight

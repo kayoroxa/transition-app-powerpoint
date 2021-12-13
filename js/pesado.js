@@ -83,8 +83,10 @@ function Element(id, children = []) {
     }
   }
 
-  function multiStyle(textMatch, style) {
-    const spans = children[0].children
+  function multiStyle(textMatch, style, indexChild = 1) {
+    console.log({ child: style.child })
+    let index = style.child ? style.child - 1 : indexChild - 1
+    const spans = children[index].children
     const texts = [...spans].map(span => span.textContent)
 
     let startCaracter = 0
