@@ -11,6 +11,7 @@ function timeLine(actions) {
     actions[index - 1](
       elements.reduce((acc, element) => ({ ...acc, [element.id]: element }), {})
     )
+    flex.reload()
   })
   document.addEventListener(
     'keydown',

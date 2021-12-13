@@ -135,7 +135,6 @@ function Flex() {
 
   function addChild(propriedades, slideElement) {
     if (!propriedades) {
-      console.log('oiiiiiiiiii')
       //remove child with id
       const index = children.findIndex(child => child.id === slideElement.id)
       console.log(index)
@@ -145,7 +144,6 @@ function Flex() {
       updateChildren()
       return
     }
-    console.log('propriedades', propriedades)
     const { w = null, h = null, line } = propriedades
     //check if already exist
     let exist = children.find(child => child.slideElement === slideElement)
@@ -156,7 +154,6 @@ function Flex() {
       exist.height = fixPercentage(h) * pageHeight
       exist.width = fixPercentage(w) * pageWidth
       exist.line = line
-      console.log('exist', exist)
     } else {
       children.push({
         id: slideElement.id,
@@ -167,14 +164,23 @@ function Flex() {
         line,
         slideElement,
       })
-      console.log(children.slice(-1))
     }
     updateDividedByLine()
     deleteEmptyLines()
     updateChildren()
   }
 
+  function updateWidthAndHeight() {
+    pageHeight = window.innerHeight
+    pageWidth = window.innerWidth
+    children.forEach(child => {
+      child.height = child.hPercentage * pageHeight
+      child.width = child.wPercentage * pageWidth
+    })
+  }
+
   function updateChildren() {
+    updateWidthAndHeight()
     //put left
     dividedByLine.forEach(line => {
       const leftChildrenInLine = getLeftAttributeLine(line)
@@ -202,12 +208,16 @@ function Flex() {
       )
     )
   }
-  console.log({ pageHeight, pageWidth })
+
+  function reload() {
+    updateChildren()
+  }
 
   return {
     addChild,
     getTopAttributeLine,
     updateChildren,
+    reload,
   }
 }
 
