@@ -155,13 +155,7 @@ function Element(id, children = []) {
     return _return
   }
 
-  function cStyle(style, index = 0) {
-    if (children.length <= 0)
-      return throwError('elementAninhado: Não tem filho')
-    // console.log({ style })
-    index = style.child ? Math.max(style.child - 1, 0, index) : index
-    // children[index].style = { ...children[index].style, ...style }
-    console.log({ style: children[index].style })
+  function cStyleDo(style, index = 0) {
     children[index].style.width = numberOrString(style.width)
     children[index].style.height = numberOrString(style.height)
     children[index].style.top = numberOrString(style.top)
@@ -180,6 +174,23 @@ function Element(id, children = []) {
     children[index].style.border = style.border
     children[index].style.marginTop = style.marginTop
     ///all style
+    return _return
+  }
+
+  function cStyle(style, index = 0) {
+    if (children.length <= 0)
+      return throwError('elementAninhado: Não tem filho')
+
+    if (!style.child || style.child === 'all') {
+      children.forEach((_, index) => {
+        cStyleDo(style, index)
+      })
+      return _return
+    }
+
+    index = style.child ? Math.max(style.child - 1, 0, index) : index
+    // children[index].style = { ...children[index].style, ...style }
+    cStyleDo(style, index)
     return _return
   }
 

@@ -106,7 +106,13 @@ Element('id') //replace for your id
       text: 'newTest'
     })
 ```
-
+- ### Change specific child style
+```javascript
+.filho({
+      child: 1, // ( child: "all" ) is default
+      fontSize: '70px',
+    })
+```
 # 🦘 Timeline function
 ```javascript
 () => {
