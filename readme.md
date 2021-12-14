@@ -158,6 +158,8 @@ myElementId.caixa({...jogar('up')}).flex()
 ...jogar('right') // come from right
 ```
 
+# 💌 Templates
+
 - Create template
 ```javascript
   function _templateNew() {
