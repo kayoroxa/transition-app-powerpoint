@@ -1,4 +1,4 @@
-function _template3Examples(params) {
+function _template3Examples() {
   return {
     elements: [
       createElement('img', {
@@ -34,7 +34,7 @@ function _template3Examples(params) {
         pt: params.exemples[2][1],
       }),
     ],
-    timeLine: [
+    timeLine: l => [
       () => {
         l.exemple.flex({ w: 3, h: 7 }).filho({
           fontSize: 40,
