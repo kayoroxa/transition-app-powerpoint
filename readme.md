@@ -158,6 +158,29 @@ myElementId.caixa({...jogar('up')}).flex()
 ...jogar('right') // come from right
 ```
 
+- Create template
+```javascript
+  function _templateNew() {
+  return {
+    elements: [],
+    timeLine: (l) => {}
+  }
+}
+```
+
+- Use template ( in file `catalogation.js` )
+```javascript
+  const x = _templateNew(params)
+
+  const elements = [
+    ...x.elements,
+  ]
+
+  timeLine(l => [
+    ...x.timeLine(l),
+  ])
+}
+```
 
 # 🆘 SOS
 
