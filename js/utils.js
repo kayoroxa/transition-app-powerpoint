@@ -206,7 +206,6 @@ function Flex() {
   }
 
   const deleteChildNotInHtml = () => {
-    debugger
     const childrenInHtml = Array.from(
       document.querySelectorAll('.elementAninhado')
     )

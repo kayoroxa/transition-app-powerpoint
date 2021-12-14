@@ -58,24 +58,24 @@ body {
 }
 .up,
 .top {
-  transform: scale(0);
-  transform: translate(-50%, 50%);
-  position: absolute;
-  top: -150vh;
-  left: 50%;
+  transform: scale(0) !important;
+  transform: translate(-50%, 50%) !important;
+  position: absolute !important;
+  top: -150vh !important;
+  left: 50% !important;
 }
 .right {
-  transform: scale(0);
-  transform: translate(50%, -50%);
-  position: absolute;
-  top: 50%;
-  left: 150%;
+  transform: scale(0) !important;
+  transform: translate(50%, -50%) !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 150% !important;
 }
 .down,
 .bottom {
-  transform: scale(0);
-  transform: translate(-50%, -50%);
-  position: absolute;
-  top: 150%;
-  left: 50%;
+  transform: scale(0) !important;
+  transform: translate(-50%, -50%) !important;
+  position: absolute !important;
+  top: 150% !important;
+  left: 50% !important;
 }
