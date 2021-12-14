@@ -8,6 +8,7 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
+
 /* body {
   width: 100vh;
   height: 100vh;
@@ -46,4 +47,35 @@ body {
   min-width: 100px;
   min-height: 100px;
   object-fit: cover;
+}
+
+.left {
+  transform: scale(0);
+  transform: translate(50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: -150%;
+}
+.up,
+.top {
+  transform: scale(0);
+  transform: translate(-50%, 50%);
+  position: absolute;
+  top: -150vh;
+  left: 50%;
+}
+.right {
+  transform: scale(0);
+  transform: translate(50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 150%;
+}
+.down,
+.bottom {
+  transform: scale(0);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 150%;
+  left: 50%;
 }
