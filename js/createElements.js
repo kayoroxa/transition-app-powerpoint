@@ -60,5 +60,3 @@ function match(text, match = '()') {
   const result = text.match(regex)?.map(v => v.replace(removeRegex, ''))
   return result?.[0]
 }
-
-console.log(match('[olá] asdasd', '[]'))
