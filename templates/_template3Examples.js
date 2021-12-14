@@ -1,4 +1,4 @@
-function _template3Examples() {
+function _template3Examples(params) {
   return {
     elements: [
       createElement('img', {
@@ -18,6 +18,7 @@ function _template3Examples() {
       }),
       createElement('exemple', {
         fontSize: 30,
+        id: 1,
         en: params.exemples[0][0],
         pt: params.exemples[0][1],
       }),
@@ -36,36 +37,36 @@ function _template3Examples() {
     ],
     timeLine: l => [
       () => {
-        l.exemple.flex({ w: 3, h: 7 }).filho({
+        l['exemple_1'].flex({ w: 3, h: 7 }).filho({
           fontSize: 40,
         })
-        l.img_1.flex({ w: 4, h: 7, line: 1 })
+        l['img_1'].flex({ w: 4, h: 7, line: 1 })
       },
       () => {
-        l.exemple.flex({ w: 3, h: 3 })
-        l.img_1.flex({ w: 4, h: 3, line: 1 })
-        l.exemple_2.flex({ w: 3, h: 6 }).filho({
+        l['exemple_1'].flex({ w: 3, h: 3 })
+        l['img_1'].flex({ w: 4, h: 3, line: 1 })
+        l['exemple_2'].flex({ w: 3, h: 6 }).filho({
           fontSize: 40,
         })
-        l.img_2.flex({ w: 4, h: 6, line: 2 })
+        l['img_2'].flex({ w: 4, h: 6, line: 2 })
       },
       () => {
-        l.exemple.flex({ w: 3, h: 2 })
-        l.img_1.flex({ w: 4, h: 2, line: 1 })
-        l.exemple_2.flex({ w: 3, h: 2 })
-        l.img_2.flex({ w: 4, h: 2, line: 2 })
-        l.exemple_3.flex({ w: 3, h: 6, line: 3 }).filho({
+        l['exemple_1'].flex({ w: 3, h: 2 })
+        l['img_1'].flex({ w: 4, h: 2, line: 1 })
+        l['exemple_2'].flex({ w: 3, h: 2 })
+        l['img_2'].flex({ w: 4, h: 2, line: 2 })
+        l['exemple_3'].flex({ w: 3, h: 6, line: 3 }).filho({
           fontSize: 40,
         })
         l.img_3.flex({ w: 4, h: 6, line: 3 })
       },
       () => {
-        l.exemple.flex({ w: 3, h: 3 })
-        l.img_1.flex({ w: 4, h: 3, line: 1 })
-        l.exemple_2.flex({ w: 3, h: 3 })
-        l.img_2.flex({ w: 4, h: 3, line: 2 })
-        l.exemple_3.flex({ w: 3, h: 3, line: 3 })
-        l.img_3.flex({ w: 4, h: 3, line: 3 })
+        l['exemple_1'].flex({ w: 3, h: 3 })
+        l['img_1'].flex({ w: 4, h: 3, line: 1 })
+        l['exemple_2'].flex({ w: 3, h: 3 })
+        l['img_2'].flex({ w: 4, h: 3, line: 2 })
+        l['exemple_3'].flex({ w: 3, h: 3, line: 3 })
+        l['img_3'].flex({ w: 4, h: 3, line: 3 })
       },
     ],
   }
