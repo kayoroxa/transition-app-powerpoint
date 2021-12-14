@@ -1,4 +1,4 @@
-function timeLine(actions) {
+function timeLine(actions, elements) {
   if (typeof actions === 'function') {
     actions = actions(
       elements.reduce((acc, element) => ({ ...acc, [element.id]: element }), {})
@@ -10,6 +10,14 @@ function timeLine(actions) {
     })
 
   let index = 0
+
+  // start
+  setTimeout(() => {
+    actions[index](
+      elements.reduce((acc, element) => ({ ...acc, [element.id]: element }), {})
+    )
+    index++
+  }, 300)
 
   window.addEventListener('resize', () => {
     if (index === 0) return
@@ -55,6 +63,7 @@ function timeLine(actions) {
 }
 
 function createElements(elements) {
+  document.body.innerHTML = ''
   elements.forEach(element => {
     //put id
     // elemento.id = element.query

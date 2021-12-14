@@ -189,9 +189,11 @@ function Flex() {
         slideElement,
       })
     }
-    updateDividedByLine()
-    deleteEmptyLines()
-    updateChildren()
+    // updateDividedByLine()
+    // deleteEmptyLines()
+    // updateChildren()
+    updateAll()
+    console.log({ children, dividedByLine })
   }
 
   function updateWidthAndHeight() {
@@ -201,6 +203,27 @@ function Flex() {
       child.height = child.hPercentage * pageHeight
       child.width = child.wPercentage * pageWidth
     })
+  }
+
+  const deleteChildNotInHtml = () => {
+    debugger
+    const childrenInHtml = Array.from(
+      document.querySelectorAll('.elementAninhado')
+    )
+    const childrenInHtmlId = childrenInHtml.map(child => child.id)
+    const childrenNotInHtml = children.filter(
+      child => !childrenInHtmlId.includes(child.id)
+    )
+    childrenNotInHtml.forEach(child => {
+      const index = children.findIndex(child => child.id === child.id)
+      children.splice(index, 1)
+    })
+  }
+
+  function updateAll() {
+    deleteChildNotInHtml()
+    updateDividedByLine()
+    updateChildren()
   }
 
   function updateChildren() {
@@ -242,10 +265,16 @@ function Flex() {
     getTopAttributeLine,
     updateChildren,
     reload,
+    updateAll,
   }
 }
 
 const flex = Flex()
+
+observerScene.addEventListener('reset', () => {
+  flex.updateAll()
+})
+
 // me.addChild({ w: 1, h: 1 }, { souElement: true, id: '1' })
 // me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '2' })
 // me.addChild({ w: 1, h: 1, line: 2 }, { souElement: true, id: '3' })

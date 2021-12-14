@@ -58,7 +58,6 @@ function Element(id, children = []) {
     let end = -1
     let find = 0
     let Try = 0
-    debugger
     while (find < textMatch.length || Try < 60) {
       Try++
       if (start < 0) {

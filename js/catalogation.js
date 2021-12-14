@@ -1,70 +1,27 @@
-const elements = [
-  // Element('header') //replace for your id
-  //   .caixa({
-  //     left: 0,
-  //     right: 0,
-  //     // width: '0px',
-  //     // height: '0px',
-  //     // bottom: '0px',
-  //     // center: true,
-  //   })
-  //   .addText('header')
-  //   .filho({
-  //     align: 'end',
-  //   }),
-  Element('header') //replace for your id
-    .caixa({
-      left: 0,
-      right: 0,
-      // width: '0px',
-      // height: '0px',
-      // bottom: '0px',
-      // center: true,
-    })
-    .addText('asdasd')
-    .filho({
-      // align: 'end',
-    }),
-  Element('image_exemplo')
-    .caixa({
-      width: '0px',
-      height: '0px',
-      top: '2000px',
-    })
-    .addImg('https://picsum.photos/700/700'),
-]
-createElements(elements)
+// const _3Examples = _template3Examples({
+//   images: [
+//     'https://picsum.photos/700/700',
+//     'https://picsum.photos/700/700',
+//     'https://picsum.photos/700/700',
+//   ],
+//   exemples: [
+//     ["hi i'ts (me)", 'olá eu sou (eu)'],
+//     ['you gonna tell to (me)', 'você vai dizer para (mim)'],
+//     ['take (me) away from this', '(me) tire disso'],
+//   ],
+// })
 
-timeLine([
-  ({ header }) => {
-    // your id elements who you wanna animate
-    header
-      .caixa({
-        ...relativeHorizontal('2-4/5'),
-        ...relativeVertical('2-4/5'),
-      })
-      .filho({
-        //style atributes
-      })
-  },
-  ({ image_exemplo, header }) => {
-    // your id elements who you wanna animate
-    console.log('olá')
-    header
-      .caixa({
-        ...relativeHorizontal('2-4/5'),
-        ...relativeVertical('2-3/16'),
-      })
-      .filho({
-        //style atributes
-      })
-    image_exemplo
-      .caixa({
-        ...relativeHorizontal('2-4/5'),
-        ...relativeVertical('4-9/10'),
-      })
-      .filho({
-        //style atributes
-      })
-  },
-])
+const make = _templateTeachAndExample({
+  title: 'Have = Ter',
+  description: 'usado pra dizer que você tem algo',
+  exemple: ['olá eu sou eu', 'olá eu sou eu'],
+  image: 'https://picsum.photos/700/700',
+})
+const make2 = _templateTeachAndExample({
+  title: 'to do = Ter',
+  description: 'to do que você tem algo',
+  exemple: ['oto dou eu', 'olá eto do eu'],
+  image: 'https://picsum.photos/700/700',
+})
+
+generateCena([make, make2])
