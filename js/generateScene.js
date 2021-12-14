@@ -21,7 +21,7 @@ function generateCena(templates) {
   }
 
   function hiddenAllElements(mode) {
-    if (mode === 'hidden') {
+    if (mode === 'opacity') {
       elements.forEach(element => {
         element.html.style.opacity = 0
       })
@@ -35,7 +35,7 @@ function generateCena(templates) {
   function nextScene() {
     sceneIndex++
     if (sceneIndex < templates.length) {
-      hiddenAllElements('up')
+      hiddenAllElements('opacity')
       setTimeout(() => {
         resetScene()
         createScene(sceneIndex)
