@@ -162,12 +162,27 @@ myElementId.caixa({...jogar('up')}).flex()
 
 - Create template
 ```javascript
-  function _templateNew() {
+function _templateNew() {
   return {
     elements: [],
-    timeLine: (l) => {}
+    timeLine: (el) => {}
   }
 }
+```
+
+# 📢 Tips
+
+- If you wanna resize the Caixa, but not text break line, use **scale**
+```javascript
+.caixa({
+  scale: 0, // 0 to 1... 0 is like: with: 0 and heigh 0
+})
+.caixa({
+  scale: 1, // 0 to 1... 1 is like: with: "auto", heigh: "auto" (real size)
+})
+.caixa({
+  scale: 0.5 // 0.5 is like 50% of real value size
+})
 ```
 
 - Use template ( in file `catalogation.js` )
@@ -178,11 +193,12 @@ myElementId.caixa({...jogar('up')}).flex()
     ...x.elements,
   ]
 
-  timeLine(l => [
-    ...x.timeLine(l),
+  timeLine(el => [
+    ...x.timeLine(el),
   ])
 }
 ```
+
 
 # 🆘 SOS
 
@@ -209,4 +225,5 @@ timeLine(({ exemple_text, teach, image_1, image_2 }) => [
   },
 ])
 ```
+
 

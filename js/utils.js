@@ -1,42 +1,69 @@
-function relativeHorizontal(stringSize) {
-  const [place, until, divididoAnt] = stringSize.split(/[\-|\/]/).map(Number)
+function removeElements(elements) {
+  elements.forEach(element => {
+    element.html.style.opacity = 0
+    setTimeout(() => {
+      element.html.remove()
+    }, 200)
+  })
+}
 
-  const size = until - place
-  const dividido = Number(divididoAnt)
-  const pageWidth = window.innerWidth
-  const oneWidth = pageWidth / dividido
-  const sizeWidth = oneWidth * (size + 1)
-  const left = oneWidth * (place - 1)
-  return {
-    width: sizeWidth,
-    left: left,
-    right: 'auto',
+function relativeHorizontal(size) {
+  if (typeof size === 'number') {
+    const pageWidth = window.innerWidth
+    const percent = Number(size) / 100
+    return pageWidth * percent
+  }
+  if (typeof size === 'string') {
+    const [place, until, divididoAnt] = size.split(/[\-|\/]/).map(Number)
+
+    const size = until - place
+    const dividido = Number(divididoAnt)
+    const pageWidth = window.innerWidth
+    const oneWidth = pageWidth / dividido
+    const sizeWidth = oneWidth * (size + 1)
+    const left = oneWidth * (place - 1)
+    return {
+      width: sizeWidth,
+      left: left,
+      right: 'auto',
+    }
   }
 }
 
-function relativeVertical(stringSize) {
-  const [place, until, divididoAnt] = stringSize.split(/[\-|\/]/).map(Number)
-  const size = until - place
-  const dividido = Number(divididoAnt)
-  const pageHeight = window.innerHeight
-  const oneHeight = pageHeight / dividido
+function relativeVertical(size) {
+  if (typeof size === 'number') {
+    const pageHeight = window.innerHeight
+    const percent = Number(size) / 100
+    return pageHeight * percent
+  }
+  if (typeof size === 'string') {
+    const [place, until, divididoAnt] = size.split(/[\-|\/]/).map(Number)
+    const size = until - place
+    const dividido = Number(divididoAnt)
+    const pageHeight = window.innerHeight
+    const oneHeight = pageHeight / dividido
 
-  const sizeHeight = oneHeight * (size + 1)
-  const top = oneHeight * (place - 1)
-  return {
-    height: sizeHeight,
-    top: top,
+    const sizeHeight = oneHeight * (size + 1)
+    const top = oneHeight * (place - 1)
+    return {
+      height: sizeHeight,
+      top: top,
+    }
   }
 }
 
-function jogar(stringPosition) {
+function jogar(stringPosition, options) {
   const pageHeight = window.innerHeight
   const pageWidth = window.innerWidth
 
-  const position = {
-    width: 0,
-    height: 0,
-  }
+  const position = options?.notScale
+    ? {
+        width: 0,
+        height: 0,
+      }
+    : {
+        scale: 0,
+      }
 
   if (stringPosition.includes('top') || stringPosition.includes('up')) {
     position.left = '50vw'
@@ -137,9 +164,7 @@ function Flex() {
     if (!propriedades) {
       //remove child with id
       const index = children.findIndex(child => child.id === slideElement.id)
-      console.log(index)
       children.splice(index, 1)
-      console.log(children)
       updateDividedByLine()
       updateChildren()
       return
@@ -199,13 +224,13 @@ function Flex() {
       })
     })
 
-    console.log(
-      dividedByLine.map(line =>
-        line.map(
-          child => JSON.stringify({ left: child.left, top: child.top }) + '\n'
-        )
-      )
-    )
+    // console.log(
+    //   dividedByLine.map(line =>
+    //     line.map(
+    //       child => JSON.stringify({ left: child.left, top: child.top }) + '\n'
+    //     )
+    //   )
+    // )
   }
 
   function reload() {

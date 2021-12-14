@@ -161,6 +161,7 @@ function Element(id, children = []) {
     me.style.background = style.background
     me.style.opacity = style.opacity
     me.style.zIndex = style.zIndex
+    if (style.scale !== undefined) me.style.transform = `scale(${style.scale})`
 
     // if (style.center === true) {
     //   const pageWidth = window.innerWidth
@@ -199,6 +200,10 @@ function Element(id, children = []) {
     children[index].style.fontStyle = style.fontStyle
     children[index].style.border = style.border
     children[index].style.marginTop = style.marginTop
+    if (style.scale) {
+      children[index].style.transform = `scale(${style.scale})`
+    }
+    // console.log(`scale(${style.scale})`)
     ///all style
     return _return
   }
@@ -225,6 +230,7 @@ function Element(id, children = []) {
 
     index = style.child ? Math.max(style.child - 1, 0, index) : index
     // children[index].style = { ...children[index].style, ...style }
+
     cStyleDo(style, index)
     return _return
   }
@@ -235,6 +241,20 @@ function Element(id, children = []) {
     } else {
       return value
     }
+  }
+
+  const show = () => {
+    me.classList.remove('left')
+    me.classList.remove('right')
+    me.classList.remove('up')
+    me.classList.remove('down')
+    pStyle({ scale: 1 })
+    cStyle({ scale: 1 })
+    return _return
+  }
+  const hidden = position => {
+    me.classList.add(position)
+    return _return
   }
 
   const _return = {
@@ -250,8 +270,13 @@ function Element(id, children = []) {
     id,
     resetChildren,
     multiStyle,
+    hidden,
+    show,
     flex: propriedades => {
       flex.addChild(propriedades, _return)
+      show()
+      // setTimeout(() => {}, 300)
+
       return _return
     },
   }
