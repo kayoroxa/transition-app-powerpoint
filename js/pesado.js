@@ -57,8 +57,11 @@ function Element(id, children = []) {
     let start = -1
     let end = -1
     let find = 0
-    while (find < textMatch.length) {
-      if (start <= 0) {
+    let Try = 0
+    debugger
+    while (find < textMatch.length || Try < 60) {
+      Try++
+      if (start < 0) {
         start = texts.indexOf(textMatch[0], Math.max(start, startCaracter, 0))
         end = start
         find++
@@ -68,12 +71,13 @@ function Element(id, children = []) {
 
       newEnd = texts.indexOf(
         textMatch[find],
-        Math.max(start, startCaracter, 0, end)
+        Math.max(start, startCaracter, 0, end + 1)
       )
       if (newEnd < 0) return { start: -1, end: -1 }
 
       if (end === -1 || newEnd - end !== 1) {
-        start = texts.indexOf(textMatch[0], newEnd)
+        start = texts.indexOf(textMatch[0], start + 1)
+        if (start < 0) return { start: -1, end: -1 }
         end = start
         find = 1
       } else {
@@ -88,7 +92,7 @@ function Element(id, children = []) {
   }
 
   function multiStyle(textMatch, style, indexChild = 1) {
-    console.log({ child: style.child })
+    if (!textMatch) return _return
     let index = style.child ? style.child - 1 : indexChild - 1
     const spans = children[index].children
     const texts = [...spans].map(span => span.textContent)
