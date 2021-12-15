@@ -52,23 +52,31 @@ function createElement(type, parameters) {
       .filho({ child: 1, color: 'red', fontSize: '45px', fontWeight: 'bold' })
       .multiStyle('=', { child: 1, color: cor.gray })
   } else if (type === 'twoHeader') {
-    return Element(parameters.id || type)
-      .hidden(parameters.from || 'bottom')
-      .addText(parameters.headers[0])
-      .addText(parameters.headers[1])
-      .filho({
-        fontSize: '65px',
-        fontWeight: 'bold',
-      })
-      .filho({
-        child: 1,
-        color: cor[parameters.colors[0]] || cor.pink,
-      })
-      .filho({
-        child: 2,
-        color: cor[parameters.colors[1]] || parameters.colors[0] || cor.purple,
-      })
-      .multiStyle('=', { color: cor.gray })
+    return (
+      Element(parameters.id || type)
+        // .caixa({
+        //   w: '40vh',
+        //   h: '30vh',
+        // })
+        .hidden(parameters.from || 'bottom')
+        .addText(parameters.headers[0])
+        .addText(parameters.headers[1])
+        .filho({
+          fontSize: '65px',
+          fontWeight: 'bold',
+        })
+        .filho({
+          child: 1,
+          color: cor[parameters.colors[0]] || cor.pink,
+        })
+        .filho({
+          child: 2,
+          color:
+            cor[parameters.colors[1]] || parameters.colors[0] || cor.purple,
+        })
+        .multiStyle('=', { child: 1, color: cor.gray })
+        .multiStyle('=', { child: 2, color: cor.gray })
+    )
   }
 }
 
