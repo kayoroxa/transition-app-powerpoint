@@ -3,11 +3,15 @@ function generateCena(templates) {
   let elements = []
 
   function createScene(sceneIndex) {
+    debugger
     elements = templates[sceneIndex].elements
     createElements(elements)
 
     timeLine(l => {
-      console.log({ l })
+      const timeLineResult = templates[sceneIndex].timeLine(l)
+      if (!timeLineResult) {
+        return observerScene.notificar('erro-not-return')
+      }
       return [
         //
         ...templates[sceneIndex].timeLine(l),

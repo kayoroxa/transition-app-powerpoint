@@ -41,7 +41,7 @@ function createElement(type, parameters) {
     return Element(id)
       .hidden(parameters.from || 'bottom')
       .addImg(parameters.src || 'https://picsum.photos/700/700')
-  } else if ((type === 'text', parameters)) {
+  } else if (type === 'text') {
     let id = parameters.id || type
     if (typeof parameters.id === 'number') {
       id = 'text_' + parameters.id
@@ -51,6 +51,24 @@ function createElement(type, parameters) {
       .addText(parameters.text)
       .filho({ child: 1, color: 'red', fontSize: '45px', fontWeight: 'bold' })
       .multiStyle('=', { child: 1, color: cor.gray })
+  } else if (type === 'twoHeader') {
+    return Element(parameters.id || type)
+      .hidden(parameters.from || 'bottom')
+      .addText(parameters.headers[0])
+      .addText(parameters.headers[1])
+      .filho({
+        fontSize: '65px',
+        fontWeight: 'bold',
+      })
+      .filho({
+        child: 1,
+        color: cor[parameters.colors[0]] || cor.pink,
+      })
+      .filho({
+        child: 2,
+        color: cor[parameters.colors[1]] || parameters.colors[0] || cor.purple,
+      })
+      .multiStyle('=', { color: cor.gray })
   }
 }
 
