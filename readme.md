@@ -184,6 +184,7 @@ function _templateNew() {
   scale: 0.5 // 0.5 is like 50% of real value size
 })
 ```
+- if you wanna show something, use just `flex`
 
 - Use template ( in file `catalogation.js` )
 ```javascript
@@ -227,3 +228,16 @@ timeLine(({ exemple_text, teach, image_1, image_2 }) => [
 ```
 
 
+
+
+# 🎈 API
+- Hidden  **Como você vai esconder a caixa**
+  - "top" | "down" | "left" ...
+  - "opacity"
+
+
+
+# Criar rápido
+```javascript
+
+```
