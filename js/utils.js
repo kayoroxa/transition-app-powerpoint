@@ -270,7 +270,7 @@ function Flex() {
 
 const flex = Flex()
 
-observerScene.addEventListener('reset', () => {
+obs('scene').addEventListener('reset', () => {
   flex.updateAll()
 })
 

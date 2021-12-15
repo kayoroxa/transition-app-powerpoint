@@ -10,10 +10,10 @@ function generateCena(templates) {
       const timeLineResult = templates[sceneIndex].timeLine(l)
       //check if timeline result is array of funcions
       const isFunc = timeLineResult?.every(func => typeof func === 'function')
-      if (!isFunc) return observerScene.notificar('erro-not-function')
+      if (!isFunc) return obs('scene').notificar('erro-not-function')
       debugger
       if (!timeLineResult) {
-        return observerScene.notificar('erro-not-return')
+        return obs('scene').notificar('erro-not-return')
       }
       return [
         //
@@ -24,7 +24,7 @@ function generateCena(templates) {
   }
   function resetScene() {
     createElements([])
-    observerScene.notificar('reset', sceneIndex)
+    obs('scene').notificar('reset', sceneIndex)
   }
 
   function hiddenAllElements(mode) {
@@ -51,26 +51,4 @@ function generateCena(templates) {
   }
 
   nextScene()
-}
-
-const observerScene = ObserverScene()
-
-function ObserverScene() {
-  const esperando = []
-
-  function addEventListener(evento, func) {
-    esperando.push({ evento, func })
-  }
-  function notificar(evento, params) {
-    esperando.forEach(e => {
-      if (e.evento === evento) {
-        e.func(params)
-      }
-    })
-  }
-  return {
-    addEventListener,
-    on: addEventListener,
-    notificar,
-  }
 }

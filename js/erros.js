@@ -1,4 +1,4 @@
-observerScene.addEventListener('erro-not-return', () => {
+obs('scene').addEventListener('erro-not-return', () => {
   document.body.innerHTML = `
     Você esqueceu de retornar um array no timeLine do template.. <br>
     Correto:<br>
@@ -9,7 +9,7 @@ observerScene.addEventListener('erro-not-return', () => {
 
   throw new Error('Você esqueceu de retornar um array no timeLine do template')
 })
-observerScene.addEventListener('erro-not-function', () => {
+obs('scene').addEventListener('erro-not-function', () => {
   document.body.innerHTML = `
   O array no timeline do template precisa ser um *array de funções*. <br>
     Correto:<br>
