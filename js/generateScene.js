@@ -3,18 +3,21 @@ function generateCena(templates) {
   let elements = []
 
   function createScene(sceneIndex) {
-    debugger
     elements = templates[sceneIndex].elements
     createElements(elements)
 
     timeLine(l => {
       const timeLineResult = templates[sceneIndex].timeLine(l)
+      //check if timeline result is array of funcions
+      const isFunc = timeLineResult?.every(func => typeof func === 'function')
+      if (!isFunc) return observerScene.notificar('erro-not-function')
+      debugger
       if (!timeLineResult) {
         return observerScene.notificar('erro-not-return')
       }
       return [
         //
-        ...templates[sceneIndex].timeLine(l),
+        ...timeLineResult,
         () => nextScene(),
       ]
     }, elements)

@@ -247,6 +247,8 @@ function Element(id, children = []) {
     me.classList.remove('right')
     me.classList.remove('up')
     me.classList.remove('down')
+    me.classList.remove('bottom')
+    me.classList.remove('top')
     pStyle({ scale: 1 })
     cStyle({ scale: 1 })
     return _return
