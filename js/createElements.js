@@ -33,6 +33,12 @@ function createElement(type, parameters) {
 
       .multiStyle(match(parameters.en, '||'), { child: 1, color: cor.purple })
       .multiStyle(match(parameters.pt, '||'), { child: 2, color: cor.purple })
+
+      .multiStyle(match(parameters.en, '++'), { child: 1, color: cor.orange })
+      .multiStyle(match(parameters.pt, '++'), { child: 2, color: cor.orange })
+
+      .multiStyle(match(parameters.en, "''"), { child: 1, color: cor.yellow })
+      .multiStyle(match(parameters.pt, "''"), { child: 2, color: cor.yellow })
   } else if (type === 'img') {
     let id = parameters.id || type
     if (typeof parameters.id === 'number') {

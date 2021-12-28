@@ -11,7 +11,6 @@ function generateCena(templates) {
       //check if timeline result is array of funcions
       const isFunc = timeLineResult?.every(func => typeof func === 'function')
       if (!isFunc) return obs('scene').notificar('erro-not-function')
-      debugger
       if (!timeLineResult) {
         return obs('scene').notificar('erro-not-return')
       }
@@ -22,9 +21,18 @@ function generateCena(templates) {
       ]
     }, elements)
   }
+  function returnScene() {
+    sceneIndex--
+    if (sceneIndex < 0) sceneIndex = 0
+    resetScene()
+    createScene(sceneIndex)
+  }
+
+  obs('scene').on('need-return-scene', returnScene)
+
   function resetScene() {
     createElements([])
-    obs('scene').notificar('reset', sceneIndex)
+    obs('scene').notificar('reset')
   }
 
   function hiddenAllElements(mode) {

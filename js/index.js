@@ -37,14 +37,18 @@ function timeLine(actions, elements) {
           )
         )
         index++
-      } else if (index > 0 && e.key === 'ArrowLeft') {
-        index--
-        actions[index](
-          elements.reduce(
-            (acc, element) => ({ ...acc, [element.id]: element }),
-            {}
+      } else if ((index > 0 && e.key === 'ArrowLeft') || e.key === 'a') {
+        obs('scene').notificar('need-return-scene')
+        setTimeout(() => {
+          index = 0
+          actions[index](
+            elements.reduce(
+              (acc, element) => ({ ...acc, [element.id]: element }),
+              {}
+            )
           )
-        )
+          index++
+        }, 3000)
       } else if (e.key === 'g') {
         ;[...document.querySelectorAll('.elementAninhado')].map(el => {
           el.classList.toggle('show-grid')

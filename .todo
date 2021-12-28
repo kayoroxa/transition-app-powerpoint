@@ -1,2 +1,19 @@
 ✔ colocar fade entre as cenas @done(21-12-14 17:59)
-☐ criar varios template
+☐ quebra de linha não vai ser feita pelo css e sim colocando <br> calculando quantidades de palavras por linha, e tamnho do box e bloqueando a quebra de linha do css ( isso resolve as piscadas da letra )
+☐ voltar slide ou voltar template ( apagar e recolocar template, clicar na seta x vezes index atual -1)
+
+
+
+
+
+uma ia que veja esse teach na ordem, e classifique cada um
+como img, teach, description, exemple-en, etc...
+template({
+  teach: [
+    'to run away',
+    'fugir ou escapar de algo',
+    'https://picsum.photos/700/700',
+    ': he runs away',
+    ': ele fugiu',
+  ],
+})

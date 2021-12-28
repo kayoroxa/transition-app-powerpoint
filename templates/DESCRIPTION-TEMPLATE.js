@@ -1,4 +1,4 @@
-//tipo CIRCO 🎪 ( Imagine essa area como seu kit layers )
+//🎪🎪🎪  tipo CIRCO 🎪 ( Imagine essa area como seu kit layers )
 createElement('teach', {
   from: 'bottom',
   en: 'asdasdasd',
@@ -36,20 +36,35 @@ function _templatePrePronto(params) {
     elements: [
       //coloque aqui qualquer 1 do tipo CIRCO 🎪, simplesmente para criar mas sem aparecer na tela
       //exemple:
+      createElement('twoHeader', {
+        // 2 header do mesmo tamanho, com cores independentes,se você colocar "=" vai ficar cinza
+        headers: ['header1 ou have = ter', 'header2'],
+        colors: ['blue', 'orange'],
+        from: 'bottom',
+        //id: 2, //obrigatorio caso aja mais de 1 no mesma cena / template
+      }),
       createElement('img', {
         src: params.src || params.img,
         from: 'bottom',
-        //id: 2, //obrigatorio caso aja mais de 1 no mesma cena / template
+        id: 1, //obrigatorio caso aja mais de 1 no mesma cena / template
+      }),
+      createElement('img', {
+        src: params.src || params.img,
+        from: 'bottom',
+        id: 2, //obrigatorio caso aja mais de 1 no mesma cena / template
       }),
     ],
     timeLine: el => [
       // cada função () => {} é executada quando eu clicar,
       // a primeira vai ser executada automaticamente (pra aparecer na tela)
       () => {
-        el['coloca o id aq'].flex({ w: 3, h: 7, linha: 1 }) // linha opcional
+        el['img_1'].flex({ w: 3, h: 7, line: 1 }) // line opcional
       },
       () => {
-        el['coloca o id aq'].flex({ w: 3, h: 7 }) // linha opcional
+        el['img_2'].flex({ w: 3, h: 7, line: 2 }) // linha opcional
+        el['img_1'].flex({ w: 3, h: 7, line: 2 }) // linha opcional
+        el['twoHeader'].flex({ w: 3, h: 7, line: 1 }) // linha opcional
+        el['twoHeader'].flex().hidden('top') // linha opcional
       },
     ],
   }

@@ -193,7 +193,6 @@ function Flex() {
     // deleteEmptyLines()
     // updateChildren()
     updateAll()
-    console.log({ children, dividedByLine })
   }
 
   function updateWidthAndHeight() {

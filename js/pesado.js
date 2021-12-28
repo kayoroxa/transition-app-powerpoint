@@ -6,7 +6,6 @@ function Element(id, children = []) {
   const me = document.createElement('div')
   me.id = id
   me.classList.add('elementAninhado')
-  console.log(me.left)
   // if ((me.left === 'auto' || !me.left) && me.right === 'auto') me.left = '0px'
   // if ((me.top === 'auto' || !me.top) && me.bottom === 'auto') me.top = '0px'
 
